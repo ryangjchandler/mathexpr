@@ -39,6 +39,17 @@ enum TokenType
     #[Literal(')')]
     case RightParen;
 
+    #[Literal(',')]
+    case Comma;
+
+    public function isPostfix(): bool
+    {
+        return match ($this) {
+            TokenType::LeftParen => true,
+            default => false,
+        };
+    }
+
     public function isInfix(): bool
     {
         return match ($this) {

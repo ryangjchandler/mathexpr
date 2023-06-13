@@ -2,6 +2,7 @@
 
 namespace RyanChandler\Mathexpr;
 
+use Closure;
 use RyanChandler\Lexical\Lexers\RuntimeLexer;
 use RyanChandler\Mathexpr\Engines\Engine;
 use RyanChandler\Mathexpr\Engines\TreeWalk;
@@ -32,5 +33,12 @@ class Evaluator
         $node = $this->parser->parse($tokens);
 
         return $this->engine->process($node);
+    }
+
+    public function addFunction(string $name, Closure $callback): static
+    {
+        $this->engine->addFunction($name, $callback);
+
+        return $this;
     }
 }

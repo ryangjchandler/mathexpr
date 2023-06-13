@@ -44,6 +44,11 @@ class TokenStream implements Iterator
         return $this->items[$this->i + 1] ?? null;
     }
 
+    public function is(TokenType $type): bool
+    {
+        return $this->current()->type === $type;
+    }
+
     public function expect(TokenType $type): void
     {
         if (! $this->valid() || $this->current()->type !== $type) {

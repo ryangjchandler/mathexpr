@@ -34,6 +34,10 @@ final class Parser
             $lhs = $this->node();
 
             $this->tokens->expect(TokenType::RightParen);
+        } elseif ($token->type === TokenType::Identifier) {
+            $this->tokens->next();
+
+            $lhs = [NodeType::Variable, $token->literal];
         } else {
             throw UnexpectedTokenException::make($token);
         }
@@ -49,14 +53,43 @@ final class Parser
 
             $op = $this->tokens->current();
 
-            if ($op->type->isInfix()) {
+            if ($op->type->isPostfix()) {
+                $lpred = Precedence::forTokenType($op->type);
+
+                if ($lpred->lt($precedence)) {
+                    break;
+                }
+
                 $this->tokens->next();
 
+                // call()
+                if ($op->type === TokenType::LeftParen) {
+                    $args = [];
+
+                    while (! $this->tokens->is(TokenType::RightParen)) {
+                        $args[] = $this->node();
+
+                        if ($this->tokens->is(TokenType::Comma)) {
+                            $this->tokens->next();
+                        }
+                    }
+
+                    $this->tokens->expect(TokenType::RightParen);
+
+                    $lhs = [NodeType::Call, $lhs, $args];
+                }
+
+                continue;
+            }
+
+            if ($op->type->isInfix()) {
                 $rpred = Precedence::forTokenType($op->type);
 
                 if ($rpred->lt($precedence)) {
                     break;
                 }
+
+                $this->tokens->next();
 
                 $this->assertNotEndOfExpression();
 

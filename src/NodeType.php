@@ -12,6 +12,7 @@ enum NodeType
     case Divide;
     case Modulo;
     case Variable;
+    case Call;
 
     public static function fromTokenType(TokenType $type): self
     {
