@@ -10,7 +10,8 @@ class TokenStream implements Iterator
 
     public function __construct(
         protected array $items = [],
-    ) {}
+    ) {
+    }
 
     public function current(): Token
     {

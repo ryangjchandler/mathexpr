@@ -2,7 +2,6 @@
 
 namespace RyanChandler\Mathexpr;
 
-use RyanChandler\Lexical\Exceptions\UnexpectedCharacterException;
 use RyanChandler\Lexical\Lexers\RuntimeLexer;
 use RyanChandler\Mathexpr\Engines\Engine;
 use RyanChandler\Mathexpr\Engines\TreeWalk;

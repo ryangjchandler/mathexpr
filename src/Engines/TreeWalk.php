@@ -2,7 +2,6 @@
 
 namespace RyanChandler\Mathexpr\Engines;
 
-use Exception;
 use RyanChandler\Mathexpr\NodeType;
 
 class TreeWalk implements Engine

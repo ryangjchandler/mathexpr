@@ -2,7 +2,6 @@
 
 namespace RyanChandler\Mathexpr;
 
-use RyanChandler\Lexical\Attributes\Error;
 use RyanChandler\Lexical\Attributes\Lexer;
 use RyanChandler\Lexical\Attributes\Literal;
 use RyanChandler\Lexical\Attributes\Regex;
@@ -10,7 +9,7 @@ use RyanChandler\Lexical\Attributes\Regex;
 #[Lexer(skip: "[ \t\n\f]+")]
 enum TokenType
 {
-    #[Regex("[0-9]+")]
+    #[Regex('[0-9]+')]
     case Integer;
 
     #[Regex('[0-9]+\.[0-9]+')]
