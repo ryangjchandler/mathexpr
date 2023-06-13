@@ -6,7 +6,7 @@ enum Precedence: int
 {
     case Lowest = 0;
     case AddSub = 1;
-    case MulDiv = 2;
+    case MulDivMod = 2;
 
     public function lt(Precedence $other): bool
     {
@@ -16,6 +16,8 @@ enum Precedence: int
     public static function forTokenType(TokenType $type): self
     {
         return match ($type) {
+            TokenType::Plus, TokenType::Minus => Precedence::AddSub,
+            TokenType::Asterisk, TokenType::Slash, TokenType::Percent => Precedence::MulDivMod,
             default => Precedence::Lowest
         };
     }

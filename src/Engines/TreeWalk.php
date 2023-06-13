@@ -15,6 +15,8 @@ class TreeWalk implements Engine
             NodeType::Subtract => $this->process($args[0]) - $this->process($args[1]),
             NodeType::Multiply => $this->process($args[0]) * $this->process($args[1]),
             NodeType::Divide => $this->process($args[0]) / $this->process($args[1]),
+            NodeType::Modulo => $this->process($args[0]) % $this->process($args[1]),
+            NodeType::Float => $args[0],
             NodeType::Integer => $args[0],
         };
     }

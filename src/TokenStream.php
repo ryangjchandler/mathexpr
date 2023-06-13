@@ -3,6 +3,7 @@
 namespace RyanChandler\Mathexpr;
 
 use Iterator;
+use RyanChandler\Mathexpr\Exceptions\ExpectedTokenException;
 
 class TokenStream implements Iterator
 {
@@ -41,5 +42,12 @@ class TokenStream implements Iterator
     public function peek(): ?Token
     {
         return $this->items[$this->i + 1] ?? null;
+    }
+
+    public function expect(TokenType $type): void
+    {
+        if (! $this->valid() || $this->current()->type !== $type) {
+            throw ExpectedTokenException::make($type, $this->valid() ? $this->current()->type : null);
+        }
     }
 }

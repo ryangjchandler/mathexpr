@@ -24,6 +24,16 @@ final class Parser
             $this->tokens->next();
 
             $lhs = [NodeType::Integer, intval($token->literal, 0)];
+        } elseif ($token->type === TokenType::Float) {
+            $this->tokens->next();
+
+            $lhs = [NodeType::Float, floatval($token->literal)];
+        } elseif ($token->type === TokenType::LeftParen) {
+            $this->tokens->next();
+
+            $lhs = $this->node();
+
+            $this->tokens->expect(TokenType::RightParen);
         } else {
             throw UnexpectedTokenException::make($token);
         }

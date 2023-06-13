@@ -10,6 +10,8 @@ enum NodeType
     case Subtract;
     case Multiply;
     case Divide;
+    case Modulo;
+    case Variable;
 
     public static function fromTokenType(TokenType $type): self
     {
@@ -18,6 +20,7 @@ enum NodeType
             TokenType::Minus => NodeType::Subtract,
             TokenType::Asterisk => NodeType::Multiply,
             TokenType::Slash => NodeType::Divide,
+            TokenType::Percent => NodeType::Modulo,
         };
     }
 }
