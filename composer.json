@@ -15,12 +15,14 @@
         }
     ],
     "require": {
-        "php": "^8.1"
+        "php": "^8.1",
+        "ryangjchandler/lexical": "^0.1.1"
     },
     "require-dev": {
-        "pestphp/pest": "^1.20",
         "laravel/pint": "^1.2",
-        "spatie/ray": "^1.28"
+        "pestphp/pest": "^1.20",
+        "spatie/ray": "^1.28",
+        "symfony/var-dumper": "^6.3"
     },
     "autoload": {
         "psr-4": {
