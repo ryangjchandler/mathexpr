@@ -53,8 +53,10 @@ class Evaluator
 
     private function registerDefaultFunctions(): void
     {
-        $this->engine->addFunction('sum', fn (int|float ...$values) => array_sum($values));
-        $this->engine->addFunction('min', fn (int|float ...$values) => min($values));
-        $this->engine->addFunction('max', fn (int|float ...$values) => max($values));
+        $this->engine->addFunction('sum', fn (int | float ...$values) => array_sum($values));
+        $this->engine->addFunction('min', fn (int | float ...$values) => min($values));
+        $this->engine->addFunction('max', fn (int | float ...$values) => max($values));
+        $this->engine->addFunction('abs', fn (int | float $value) => abs($value));
+        $this->engine->addFunction('sign', fn (int | float $value) => $value <=> 0);
     }
 }
