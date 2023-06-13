@@ -44,6 +44,13 @@ class Evaluator
         return $this;
     }
 
+    public function addVariable(string $name, int|float $value): static
+    {
+        $this->engine->addVariable($name, $value);
+
+        return $this;
+    }
+
     private function registerDefaultFunctions(): void
     {
         $this->engine->addFunction('sum', fn (int|float ...$values) => array_sum($values));

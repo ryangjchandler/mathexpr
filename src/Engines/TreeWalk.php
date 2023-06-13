@@ -15,6 +15,11 @@ class TreeWalk implements Engine
         $this->environment[$name] = $callback;
     }
 
+    public function addVariable(string $name, int|float $value): void
+    {
+        $this->environment[$name] = $value;
+    }
+
     public function process(array $node): int|float
     {
         [$type, $args] = [$node[0], array_slice($node, 1)];
@@ -26,6 +31,7 @@ class TreeWalk implements Engine
             NodeType::Divide => $this->process($args[0]) / $this->process($args[1]),
             NodeType::Modulo => $this->process($args[0]) % $this->process($args[1]),
             NodeType::Call => $this->call($args[0][1], $args[1]),
+            NodeType::Variable => $this->get($args[0]) ?? throw InvalidVariableException::make($args[0]),
             NodeType::Float => $args[0],
             NodeType::Integer => $args[0],
         };
