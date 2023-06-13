@@ -22,6 +22,7 @@ class Evaluator
         $this->engine = new TreeWalk();
 
         $this->registerDefaultFunctions();
+        $this->registerDefaultVariables();
     }
 
     public function eval(string $expression)
@@ -58,5 +59,17 @@ class Evaluator
         $this->engine->addFunction('max', fn (int|float ...$values) => max($values));
         $this->engine->addFunction('abs', fn (int|float $value) => abs($value));
         $this->engine->addFunction('sign', fn (int|float $value) => $value <=> 0);
+    }
+
+    private function registerDefaultVariables(): void
+    {
+        $this->engine->addVariable('pi', M_PI);
+        $this->engine->addVariable('PI', M_PI);
+
+        $this->engine->addVariable('tau', 2 * M_PI);
+        $this->engine->addVariable('TAU', 2 * M_PI);
+
+        $this->engine->addVariable('e', M_E);
+        $this->engine->addVariable('E', M_E);
     }
 }
