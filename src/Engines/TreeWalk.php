@@ -3,8 +3,9 @@
 namespace RyanChandler\Mathexpr\Engines;
 
 use Closure;
-use RyanChandler\Mathexpr\Exceptions\InvalidFunctionCallException;
 use RyanChandler\Mathexpr\NodeType;
+use RyanChandler\Mathexpr\Exceptions\InvalidVariableException;
+use RyanChandler\Mathexpr\Exceptions\InvalidFunctionCallException;
 
 class TreeWalk implements Engine
 {
@@ -25,6 +26,7 @@ class TreeWalk implements Engine
         [$type, $args] = [$node[0], array_slice($node, 1)];
 
         return match ($type) {
+            NodeType::Negate => -$this->process($args[0]),
             NodeType::Add => $this->process($args[0]) + $this->process($args[1]),
             NodeType::Subtract => $this->process($args[0]) - $this->process($args[1]),
             NodeType::Multiply => $this->process($args[0]) * $this->process($args[1]),

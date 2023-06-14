@@ -6,6 +6,7 @@ enum NodeType
 {
     case Integer;
     case Float;
+    case Negate;
     case Add;
     case Subtract;
     case Multiply;

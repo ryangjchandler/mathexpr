@@ -24,3 +24,8 @@ it('can mod numbers', function () {
     expect(matheval('5 % 2'))
         ->toBe(1);
 });
+
+it('can negate numbers', function () {
+    expect(matheval('-10'))
+        ->toBe(-10);
+});

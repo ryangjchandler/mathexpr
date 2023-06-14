@@ -7,7 +7,8 @@ enum Precedence: int
     case Lowest = 0;
     case AddSub = 1;
     case MulDivMod = 2;
-    case Call = 3;
+    case Prefix = 3;
+    case Call = 4;
 
     public function lt(Precedence $other): bool
     {

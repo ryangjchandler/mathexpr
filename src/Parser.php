@@ -38,6 +38,10 @@ final class Parser
             $this->tokens->next();
 
             $lhs = [NodeType::Variable, $token->literal];
+        } elseif ($token->type === TokenType::Minus) {
+            $this->tokens->next();
+
+            $lhs = [NodeType::Negate, $this->node(Precedence::Prefix)];
         } else {
             throw UnexpectedTokenException::make($token);
         }
