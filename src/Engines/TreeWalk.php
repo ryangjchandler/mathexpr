@@ -3,9 +3,9 @@
 namespace RyanChandler\Mathexpr\Engines;
 
 use Closure;
-use RyanChandler\Mathexpr\NodeType;
-use RyanChandler\Mathexpr\Exceptions\InvalidVariableException;
 use RyanChandler\Mathexpr\Exceptions\InvalidFunctionCallException;
+use RyanChandler\Mathexpr\Exceptions\InvalidVariableException;
+use RyanChandler\Mathexpr\NodeType;
 
 class TreeWalk implements Engine
 {
